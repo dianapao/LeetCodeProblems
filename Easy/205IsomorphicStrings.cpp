@@ -14,22 +14,22 @@ using namespace std;
 	i,e
 */
 bool isIsomorphic(string s, string t) {
-        map<char,char> mapOfS;
-        vector<char> mappedT;
+        map<char,char> mapOfS;      //map to map characters of S
+        vector<char> mappedT;       //vector to store the chars already mapped of T
         bool flag = true;
         for(int i=0; i<s.size(); i++){
-        	auto findS = mapOfS.find(s[i]);
-        	if(findS == mapOfS.end()){
-        		auto findMapped = find(mappedT.begin(), mappedT.end(), t[i]);
-        		if(findMapped == mappedT.end()){
+        	auto findS = mapOfS.find(s[i]);        //search the key s[i]
+        	if(findS == mapOfS.end()){             //if the key doesn't exist
+        		auto findMapped = find(mappedT.begin(), mappedT.end(), t[i]);     
+        		if(findMapped == mappedT.end()){      //first check if the current char in T has not been mapped
         			mapOfS.insert({s[i], t[i]});
         			mappedT.push_back(t[i]);
         		}else{
-        			flag = false;
+        			flag = false;                    //if t[i] has been already mapped, is impossible
         			break;
         		}
-        	}else{
-        		if(findS->second != t[i]){
+        	}else{         //if the key exist
+        		if(findS->second != t[i]){           //if the same key try to map another value, it is impossible 
         			flag = false;
         			break;
         		}
