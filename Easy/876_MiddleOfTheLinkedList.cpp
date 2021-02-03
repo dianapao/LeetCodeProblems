@@ -27,3 +27,5 @@ public:
         return head;
     }
 };
+
+/*in the second while we can replace all content of this by only it = it->next y finally return it. It is more easy*/
